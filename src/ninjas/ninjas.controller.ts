@@ -18,7 +18,7 @@ import { NinjasService } from './ninjas.service';
 @Controller('ninjas')
 export class NinjasController {
   constructor(private readonly ninjasService: NinjasService) {}
-  
+
   //GET /ninjas?weapon=fast --> []
   @Get()
   getNinjas(@Query('weapon') weapon: 'stars' | 'nunchucks') {
@@ -28,13 +28,13 @@ export class NinjasController {
 
   //GET /ninjas/:id --> {...}
   @Get(':id')
-  getOneNinja(@Param('id', ParseIntPipe) id: number) { //using pipe to change string into number
-    try{
+  getOneNinja(@Param('id', ParseIntPipe) id: number) {
+    //using pipe to change string into number
+    try {
       return this.ninjasService.getNinja(id);
-    }catch(err){
-throw new NotFoundException();
+    } catch (err) {
+      throw new NotFoundException();
     }
-    
   }
 
   //POST /ninjas
